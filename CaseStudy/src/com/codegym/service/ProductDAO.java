@@ -133,71 +133,71 @@ public class ProductDAO {
         return rowDeleted;
     }
 
-//    public boolean updateUser(Product product) throws SQLException {
-//        boolean rowUpdated;
-//        try (Connection connection = getConnection(); PreparedStatement statement = connection.prepareStatement(UPDATE_USERS_SQL);) {
-//            statement.setString(1, product.getName());
-//            statement.setString(2, product.getEmail());
-//            statement.setString(3, product.getCountry());
-//            statement.setInt(4, product.getId());
-//
-//            rowUpdated = statement.executeUpdate() > 0;
-//        }
-//        return rowUpdated;
-//    }
-//
-//    private void printSQLException(SQLException ex) {
-//        for (Throwable e : ex) {
-//            if (e instanceof SQLException) {
-//                e.printStackTrace(System.err);
-//                System.err.println("SQLState: " + ((SQLException) e).getSQLState());
-//                System.err.println("Error Code: " + ((SQLException) e).getErrorCode());
-//                System.err.println("Message: " + e.getMessage());
-//                Throwable t = ex.getCause();
-//                while (t != null) {
-//                    System.out.println("Cause: " + t);
-//                    t = t.getCause();
-//                }
-//            }
-//        }
-//    }
-//
-//    private Product getUserById(int id) throws SQLException {
-//        Product product = null;
-//        String query = "{call get_user_by_id(?)}";
-//        try(Connection connection = getConnection();
-//            CallableStatement callableStatement = connection.prepareCall(query)){
-//            callableStatement.setInt(1,id);
-//            ResultSet rs = callableStatement.executeQuery();
-//
-//            while (rs.next()){
-//                String name = rs.getString("name");
-//
-//                String email = rs.getString("email");
-//
-//                String country = rs.getString("country");
-//
-//                product = new Product(id, name, email, country);
-//            }
-//        } catch (SQLException e) {
-//
-//            printSQLException(e);
-//        }
-//        return product;
-//    }
-//
-//    public void insertUserStore(Product product) throws SQLException {
-//        String query = "{call insert_user(?,?,?)}";
-//        try(Connection connection = getConnection()){
-//            CallableStatement callableStatement = connection.prepareCall(query);
-//            callableStatement.setString(1, product.getName());
-//            callableStatement.setString(2, product.getEmail());
-//            callableStatement.setString(3, product.getCountry());
-//            System.out.println(callableStatement);
-//            callableStatement.executeUpdate();
-//
-//        }
-//    }
-//
-//}
-//
+    public boolean updateUser(Product product) throws SQLException {
+        boolean rowUpdated;
+        try (Connection connection = getConnection(); PreparedStatement statement = connection.prepareStatement(UPDATE_USERS_SQL);) {
+            statement.setString(1, product.getName());
+            statement.setString(2, product.getEmail());
+            statement.setString(3, product.getCountry());
+            statement.setInt(4, product.getId());
+
+            rowUpdated = statement.executeUpdate() > 0;
+        }
+        return rowUpdated;
+    }
+
+    private void printSQLException(SQLException ex) {
+        for (Throwable e : ex) {
+            if (e instanceof SQLException) {
+                e.printStackTrace(System.err);
+                System.err.println("SQLState: " + ((SQLException) e).getSQLState());
+                System.err.println("Error Code: " + ((SQLException) e).getErrorCode());
+                System.err.println("Message: " + e.getMessage());
+                Throwable t = ex.getCause();
+                while (t != null) {
+                    System.out.println("Cause: " + t);
+                    t = t.getCause();
+                }
+            }
+        }
+    }
+
+    private Product getUserById(int id) throws SQLException {
+        Product product = null;
+        String query = "{call get_user_by_id(?)}";
+        try(Connection connection = getConnection();
+            CallableStatement callableStatement = connection.prepareCall(query)){
+            callableStatement.setInt(1,id);
+            ResultSet rs = callableStatement.executeQuery();
+
+            while (rs.next()){
+                String name = rs.getString("name");
+
+                String email = rs.getString("email");
+
+                String country = rs.getString("country");
+
+                product = new Product(id, name, email, country);
+            }
+        } catch (SQLException e) {
+
+            printSQLException(e);
+        }
+        return product;
+    }
+
+    public void insertUserStore(Product product) throws SQLException {
+        String query = "{call insert_user(?,?,?)}";
+        try(Connection connection = getConnection()){
+            CallableStatement callableStatement = connection.prepareCall(query);
+            callableStatement.setString(1, product.getName());
+            callableStatement.setString(2, product.getEmail());
+            callableStatement.setString(3, product.getCountry());
+            System.out.println(callableStatement);
+            callableStatement.executeUpdate();
+
+        }
+    }
+
+}
+
