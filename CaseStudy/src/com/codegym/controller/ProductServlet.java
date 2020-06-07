@@ -46,37 +46,37 @@ public class ProductServlet extends HttpServlet {
         }
     }
 
-//    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-//            throws ServletException, IOException {
-//        String action = request.getParameter("action");
-//        if (action == null) {
-//            action = "";
-//        }
-//
-//        try {
-//            switch (action) {
-//                case "index":
-//                    showIndex(request,response);
-//                case "create":
-//                    showNewForm(request, response);
-//                    break;
-//                case "edit":
-//                    showEditForm(request, response);
-//                    break;
-//                case "delete":
-//                    deleteUser(request, response);
-//                    break;
-//                case "listbycountry":
-//                    showSearchForm(request,response);
-//                    break;
-//                default:
-//                    listUser(request, response);
-//                    break;
-//            }
-//        } catch (SQLException ex) {
-//            throw new ServletException(ex);
-//        }
-//    }
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String action = request.getParameter("action");
+        if (action == null) {
+            action = "";
+        }
+
+        try {
+            switch (action) {
+                case "index":
+                    showIndex(request,response);
+                case "create":
+                    showNewForm(request, response);
+                    break;
+                case "edit":
+                    showEditForm(request, response);
+                    break;
+                case "delete":
+                    deleteUser(request, response);
+                    break;
+                case "listbycountry":
+                    showSearchForm(request,response);
+                    break;
+                default:
+                    listUser(request, response);
+                    break;
+            }
+        } catch (SQLException ex) {
+            throw new ServletException(ex);
+        }
+    }
 //
 //    private void showIndex(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //        List<Product> listProduct = productDAO.selectAllUsers();
