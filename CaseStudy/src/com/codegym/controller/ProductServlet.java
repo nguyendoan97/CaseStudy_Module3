@@ -77,30 +77,30 @@ public class ProductServlet extends HttpServlet {
             throw new ServletException(ex);
         }
     }
-//
-//    private void showIndex(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        List<Product> listProduct = productDAO.selectAllUsers();
-//        request.setAttribute("listProduct", listProduct);
-//        RequestDispatcher dispatcher = request.getRequestDispatcher("/product/list.jsp");
-//        dispatcher.forward(request, response);
-//    }
-//
-//    private void listUser(HttpServletRequest request, HttpServletResponse response)
-//            throws SQLException, IOException, ServletException {
-//        List<Product> listProduct = productDAO.selectAllUsers();
-//        request.setAttribute("listProduct", listProduct);
-//        RequestDispatcher dispatcher = request.getRequestDispatcher("/product/list_data.jsp");
-//        dispatcher.forward(request, response);
-//    }
-//    private void listUserByCountry(HttpServletRequest request, HttpServletResponse response)
-//            throws SQLException, IOException, ServletException {
-//        String country = request.getParameter("country");
-//        List<Product> listCountry = productDAO.selectUserByCount(country);
-//        request.setAttribute("listCountry", listCountry);
-//        RequestDispatcher dispatcher = request.getRequestDispatcher("/product/listbycountry.jsp");
-//        System.out.println(dispatcher);
-//        dispatcher.forward(request, response);
-//    }
+
+    private void showIndex(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        List<Product> listProduct = productDAO.selectAllUsers();
+        request.setAttribute("listProduct", listProduct);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/product/list.jsp");
+        dispatcher.forward(request, response);
+    }
+
+    private void listUser(HttpServletRequest request, HttpServletResponse response)
+            throws SQLException, IOException, ServletException {
+        List<Product> listProduct = productDAO.selectAllUsers();
+        request.setAttribute("listProduct", listProduct);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/product/list_data.jsp");
+        dispatcher.forward(request, response);
+    }
+    private void listUserByCountry(HttpServletRequest request, HttpServletResponse response)
+            throws SQLException, IOException, ServletException {
+        String country = request.getParameter("country");
+        List<Product> listCountry = productDAO.selectUserByCount(country);
+        request.setAttribute("listCountry", listCountry);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/product/listbycountry.jsp");
+        System.out.println(dispatcher);
+        dispatcher.forward(request, response);
+    }
 //    private void showSearchForm(HttpServletRequest request, HttpServletResponse response)
 //            throws ServletException, IOException {
 //        RequestDispatcher dispatcher = request.getRequestDispatcher("/product/formsearch.jsp");
