@@ -18,22 +18,22 @@ public class ProductDAO {
     private static final String DELETE_USERS_SQL = "delete from users where id = ?;";
     private static final String UPDATE_USERS_SQL = "update users set name = ?,email= ?, country =? where id = ?;";
 
-//    public ProductDAO() {
-//    }
-//
-//    protected Connection getConnection(){
-//        Connection  connection = null;
-//        try{
-//            Class.forName("com.mysql.cj.jdbc.Driver");
-//            connection = DriverManager.getConnection(jdbcURL,jdbcUsername,jdbcPassword);
-//        } catch (ClassNotFoundException e) {
-//            e.printStackTrace();
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//        return connection;
-//    }
-//
+    public ProductDAO() {
+    }
+
+    protected Connection getConnection(){
+        Connection  connection = null;
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            connection = DriverManager.getConnection(jdbcURL,jdbcUsername,jdbcPassword);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return connection;
+    }
+
 //
 //    public void insertUser(Product product) throws SQLException {
 //        System.out.println(INSERT_USERS_SQL);
