@@ -114,16 +114,16 @@ public class ProductServlet extends HttpServlet {
         dispatcher.forward(request, response);
     }
 
-//    private void showEditForm(HttpServletRequest request, HttpServletResponse response)
-//            throws SQLException, ServletException, IOException {
-//        int id = Integer.parseInt(request.getParameter("id"));
-//        Product existingProduct = productDAO.selectUser(id);
-//        RequestDispatcher dispatcher = request.getRequestDispatcher("product/edit.jsp");
-//        request.setAttribute("product", existingProduct);
-//        dispatcher.forward(request, response);
-//
-//    }
-//
+    private void showEditForm(HttpServletRequest request, HttpServletResponse response)
+            throws SQLException, ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        Product existingProduct = productDAO.selectUser(id);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("product/edit.jsp");
+        request.setAttribute("product", existingProduct);
+        dispatcher.forward(request, response);
+
+    }
+
 //    private void insertUser(HttpServletRequest request, HttpServletResponse response)
 //            throws SQLException, IOException, ServletException {
 //        String name = request.getParameter("name");
