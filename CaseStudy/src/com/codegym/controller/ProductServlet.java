@@ -108,12 +108,12 @@ public class ProductServlet extends HttpServlet {
 //    }
 //
 //
-//    private void showNewForm(HttpServletRequest request, HttpServletResponse response)
-//            throws ServletException, IOException {
-//        RequestDispatcher dispatcher = request.getRequestDispatcher("/product/create.jsp");
-//        dispatcher.forward(request, response);
-//    }
-//
+    private void showNewForm(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/product/create.jsp");
+        dispatcher.forward(request, response);
+    }
+
 //    private void showEditForm(HttpServletRequest request, HttpServletResponse response)
 //            throws SQLException, ServletException, IOException {
 //        int id = Integer.parseInt(request.getParameter("id"));
