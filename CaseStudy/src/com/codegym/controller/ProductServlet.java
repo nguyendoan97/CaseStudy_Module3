@@ -148,14 +148,14 @@ public class ProductServlet extends HttpServlet {
         dispatcher.forward(request, response);
     }
 
-//    private void deleteUser(HttpServletRequest request, HttpServletResponse response)
-//            throws SQLException, IOException, ServletException {
-//        int id = Integer.parseInt(request.getParameter("id"));
-//        productDAO.deleteUser(id);
-//
-//        List<Product> listProduct = productDAO.selectAllUsers();
-//        request.setAttribute("listProduct", listProduct);
-//        RequestDispatcher dispatcher = request.getRequestDispatcher("product/list_data.jsp");
-//        dispatcher.forward(request, response);
-//    }
-//}
+    private void deleteUser(HttpServletRequest request, HttpServletResponse response)
+            throws SQLException, IOException, ServletException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        productDAO.deleteUser(id);
+
+        List<Product> listProduct = productDAO.selectAllUsers();
+        request.setAttribute("listProduct", listProduct);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("product/list_data.jsp");
+        dispatcher.forward(request, response);
+    }
+}
