@@ -3,13 +3,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-    <title>User Management Application</title>
+    <title>Quản Lý Sản Phẩm</title>
 </head>
 <body>
 <div style="text-align: center;">
-    <h1>User Management</h1>
+    <h1>Quản Lý Sản Phẩm</h1>
     <h2>
-        <a href="./products?action=products">List All Users</a>
+        <a href="./products?action=products">Quay Lại Danh Sách</a>
     </h2>
 
 </div>
@@ -17,32 +17,32 @@
     <form method="post">
         <table border="1" cellpadding="5">
             <caption>
-                <h2>EDIT USERS</h2>
+                <h2>Sửa Thông Tin</h2>
             </caption>
             <c:if test="${product!=null}">
                 <input type="hidden" name="id" value="<c:out value='${product.id}'/>"/>
             </c:if>
             <tr>
-                <th>User Name:</th>
+                <th>Tên SP:</th>
                 <td>
                     <input type="text" name="name" size="45" value="<c:out value='${product.name}'/>"/>
                 </td>
             </tr>
             <tr>
-                <th>User Email :</th>
+                <th>URL Hình Ảnh :</th>
                 <td>
                     <input type="text" name="email" size="45" value="<c:out value='${product.email}'/>">
                 </td>
             </tr>
             <tr>
-                <th>Country :</th>
+                <th>Phân Loại :</th>
                 <td>
                     <input type="text" name="country" size="45" value="<c:out value='${product.country}'/>"/>
                 </td>
             </tr>
             <tr>
                 <td colspan="2" align="center">
-                    <input type="submit" value="Save"/>
+                    <input type="submit" value="Thay Đổi"/>
                 </td>
             </tr>
         </table>

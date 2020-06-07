@@ -18,9 +18,9 @@
         <caption><h2>List of Users</h2></caption>
         <tr>
             <th>ID</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Country</th>
+            <th>Tên SP</th>
+            <th>URL Hình Ảnh</th>
+            <th>Phân Loại</th>
         </tr>
         <c:forEach var="product" items="${listCountry}">
             <tr>
