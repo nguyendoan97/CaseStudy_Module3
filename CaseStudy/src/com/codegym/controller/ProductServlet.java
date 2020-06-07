@@ -23,29 +23,29 @@ public class ProductServlet extends HttpServlet {
         productDAO = new ProductDAO();
     }
 
-//    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-//            throws ServletException, IOException {
-//        String action = request.getParameter("action");
-//        if (action == null) {
-//            action = "";
-//        }
-//        try {
-//            switch (action) {
-//                case "create":
-//                    insertUser(request, response);
-//                    break;
-//                case "edit":
-//                    updateUser(request, response);
-//                    break;
-//                case "listbycountry":
-//                    listUserByCountry(request,response);
-//                    break;
-//            }
-//        } catch (SQLException ex) {
-//            throw new ServletException(ex);
-//        }
-//    }
-//
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String action = request.getParameter("action");
+        if (action == null) {
+            action = "";
+        }
+        try {
+            switch (action) {
+                case "create":
+                    insertUser(request, response);
+                    break;
+                case "edit":
+                    updateUser(request, response);
+                    break;
+                case "listbycountry":
+                    listUserByCountry(request,response);
+                    break;
+            }
+        } catch (SQLException ex) {
+            throw new ServletException(ex);
+        }
+    }
+
 //    protected void doGet(HttpServletRequest request, HttpServletResponse response)
 //            throws ServletException, IOException {
 //        String action = request.getParameter("action");
