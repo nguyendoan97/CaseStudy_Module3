@@ -101,13 +101,13 @@ public class ProductServlet extends HttpServlet {
         System.out.println(dispatcher);
         dispatcher.forward(request, response);
     }
-//    private void showSearchForm(HttpServletRequest request, HttpServletResponse response)
-//            throws ServletException, IOException {
-//        RequestDispatcher dispatcher = request.getRequestDispatcher("/product/formsearch.jsp");
-//        dispatcher.forward(request, response);
-//    }
-//
-//
+    private void showSearchForm(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/product/formsearch.jsp");
+        dispatcher.forward(request, response);
+    }
+
+
     private void showNewForm(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         RequestDispatcher dispatcher = request.getRequestDispatcher("/product/create.jsp");
