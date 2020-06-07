@@ -71,68 +71,68 @@ public class ProductDAO {
         }
         return product;
     }
-//    public List<Product> selectUserByCount(String countrys) {
-//        List<Product> products = new ArrayList<>();
-//
-//        try (Connection connection = getConnection();
-//
-//             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_USER_BY_COUNTRY);) {
-//            preparedStatement.setString(1, countrys);
-//            System.out.println(preparedStatement);
-//
-//            ResultSet rs = preparedStatement.executeQuery();
-//
-//
-//            while (rs.next()) {
-//                int id = rs.getInt("id");
-//                String name = rs.getString("name");
-//                String email = rs.getString("email");
-//                String country = rs.getString("country");
-//                products.add(new Product(id, name, email, country));
-//            }
-//        } catch (SQLException e) {
-//            printSQLException(e);
-//        }
-//        return products;
-//    }
-//
-//    public List<Product> selectAllUsers() {
-//
-//        // using try-with-resources to avoid closing resources (boiler plate code)
-//        List<Product> products = new ArrayList<>();
-//        // Step 1: Establishing a Connection
-//        try (Connection connection = getConnection();
-//
-//             // Step 2:Create a statement using connection object
-//             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_USERS);) {
-//            System.out.println(preparedStatement);
-//            // Step 3: Execute the query or update query
-//            ResultSet rs = preparedStatement.executeQuery();
-//
-//            // Step 4: Process the ResultSet object.
-//            while (rs.next()) {
-//                int id = rs.getInt("id");
-//                String name = rs.getString("name");
-//                String email = rs.getString("email");
-//                String country = rs.getString("country");
-//                products.add(new Product(id, name, email, country));
-//            }
-//        } catch (SQLException e) {
-//            printSQLException(e);
-//        }
-//        return products;
-//    }
-//
-//    public boolean deleteUser(int id) throws SQLException {
-//        boolean rowDeleted;
-//        try (Connection connection = getConnection();
-//             PreparedStatement statement = connection.prepareStatement(DELETE_USERS_SQL);) {
-//            statement.setInt(1, id);
-//            rowDeleted = statement.executeUpdate() > 0;
-//        }
-//        return rowDeleted;
-//    }
-//
+    public List<Product> selectUserByCount(String countrys) {
+        List<Product> products = new ArrayList<>();
+
+        try (Connection connection = getConnection();
+
+             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_USER_BY_COUNTRY);) {
+            preparedStatement.setString(1, countrys);
+            System.out.println(preparedStatement);
+
+            ResultSet rs = preparedStatement.executeQuery();
+
+
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String name = rs.getString("name");
+                String email = rs.getString("email");
+                String country = rs.getString("country");
+                products.add(new Product(id, name, email, country));
+            }
+        } catch (SQLException e) {
+            printSQLException(e);
+        }
+        return products;
+    }
+
+    public List<Product> selectAllUsers() {
+
+        // using try-with-resources to avoid closing resources (boiler plate code)
+        List<Product> products = new ArrayList<>();
+        // Step 1: Establishing a Connection
+        try (Connection connection = getConnection();
+
+             // Step 2:Create a statement using connection object
+             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_USERS);) {
+            System.out.println(preparedStatement);
+            // Step 3: Execute the query or update query
+            ResultSet rs = preparedStatement.executeQuery();
+
+            // Step 4: Process the ResultSet object.
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String name = rs.getString("name");
+                String email = rs.getString("email");
+                String country = rs.getString("country");
+                products.add(new Product(id, name, email, country));
+            }
+        } catch (SQLException e) {
+            printSQLException(e);
+        }
+        return products;
+    }
+
+    public boolean deleteUser(int id) throws SQLException {
+        boolean rowDeleted;
+        try (Connection connection = getConnection();
+             PreparedStatement statement = connection.prepareStatement(DELETE_USERS_SQL);) {
+            statement.setInt(1, id);
+            rowDeleted = statement.executeUpdate() > 0;
+        }
+        return rowDeleted;
+    }
+
 //    public boolean updateUser(Product product) throws SQLException {
 //        boolean rowUpdated;
 //        try (Connection connection = getConnection(); PreparedStatement statement = connection.prepareStatement(UPDATE_USERS_SQL);) {
