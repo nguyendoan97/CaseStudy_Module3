@@ -124,30 +124,30 @@ public class ProductServlet extends HttpServlet {
 
     }
 
-//    private void insertUser(HttpServletRequest request, HttpServletResponse response)
-//            throws SQLException, IOException, ServletException {
-//        String name = request.getParameter("name");
-//        String email = request.getParameter("email");
-//        String country = request.getParameter("country");
-//        Product newProduct = new Product(name, email, country);
-//        productDAO.insertUser(newProduct);
-//        RequestDispatcher dispatcher = request.getRequestDispatcher("/product/create.jsp");
-//        dispatcher.forward(request, response);
-//    }
-//
-//    private void updateUser(HttpServletRequest request, HttpServletResponse response)
-//            throws SQLException, IOException, ServletException {
-//        int id = Integer.parseInt(request.getParameter("id"));
-//        String name = request.getParameter("name");
-//        String email = request.getParameter("email");
-//        String country = request.getParameter("country");
-//
-//        Product book = new Product(id, name, email, country);
-//        productDAO.updateUser(book);
-//        RequestDispatcher dispatcher = request.getRequestDispatcher("product/edit.jsp");
-//        dispatcher.forward(request, response);
-//    }
-//
+    private void insertUser(HttpServletRequest request, HttpServletResponse response)
+            throws SQLException, IOException, ServletException {
+        String name = request.getParameter("name");
+        String email = request.getParameter("email");
+        String country = request.getParameter("country");
+        Product newProduct = new Product(name, email, country);
+        productDAO.insertUser(newProduct);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/product/create.jsp");
+        dispatcher.forward(request, response);
+    }
+
+    private void updateUser(HttpServletRequest request, HttpServletResponse response)
+            throws SQLException, IOException, ServletException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        String name = request.getParameter("name");
+        String email = request.getParameter("email");
+        String country = request.getParameter("country");
+
+        Product book = new Product(id, name, email, country);
+        productDAO.updateUser(book);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("product/edit.jsp");
+        dispatcher.forward(request, response);
+    }
+
 //    private void deleteUser(HttpServletRequest request, HttpServletResponse response)
 //            throws SQLException, IOException, ServletException {
 //        int id = Integer.parseInt(request.getParameter("id"));
