@@ -34,21 +34,20 @@ public class ProductDAO {
         return connection;
     }
 
-//
-//    public void insertUser(Product product) throws SQLException {
-//        System.out.println(INSERT_USERS_SQL);
-//        // try-with-resource statement will auto close the connection.
-//        try (Connection connection = getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USERS_SQL)) {
-//            preparedStatement.setString(1, product.getName());
-//            preparedStatement.setString(2, product.getEmail());
-//            preparedStatement.setString(3, product.getCountry());
-//            System.out.println(preparedStatement);
-//            preparedStatement.executeUpdate();
-//        } catch (SQLException e) {
-//            printSQLException(e);
-//        }
-//    }
-//
+
+    public void insertUser(Product product) throws SQLException {
+        System.out.println(INSERT_USERS_SQL);
+        try (Connection connection = getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USERS_SQL)) {
+            preparedStatement.setString(1, product.getName());
+            preparedStatement.setString(2, product.getEmail());
+            preparedStatement.setString(3, product.getCountry());
+            System.out.println(preparedStatement);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            printSQLException(e);
+        }
+    }
+
 //    public Product selectUser(int id) {
 //        Product product = null;
 //        // Step 1: Establishing a Connection
