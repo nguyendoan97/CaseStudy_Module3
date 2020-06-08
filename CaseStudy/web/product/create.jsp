@@ -27,13 +27,18 @@
             <tr>
                 <th>URL Hình Ảnh:</th>
                 <td>
-                    <input type="text" name="email" id="email" size="45">
+                    <input type="text" name="image" id="image" size="45">
+                </td>
+            </tr><tr>
+                <th>Giá SP:</th>
+                <td>
+                    <input type="number" name="prince" id="prince" size="45">
                 </td>
             </tr>
             <tr>
                 <th>Phân Loại:</th>
                 <td>
-                    <input type="text" name="country" id="country" size="45">
+                    <input type="text" name="classify" id="classify" size="45">
                 </td>
 
             </tr>

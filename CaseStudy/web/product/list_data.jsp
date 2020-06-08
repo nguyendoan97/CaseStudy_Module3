@@ -25,6 +25,7 @@
             <th>ID</th>
             <th>Tên Sản Phẩm</th>
             <th>URL Hình Ảnh</th>
+            <th>Giá SP</th>
             <th>Phân Loại</th>
             <th>Tùy Chọn</th>
         </tr>
@@ -32,8 +33,9 @@
             <tr>
                 <td><c:out value="${product.id}"/></td>
                 <td><c:out value="${product.name}"/></td>
-                <td><c:out value="${product.email}"/></td>
-                <td><c:out value="${product.country}"/></td>
+                <td><c:out value="${product.image}"/></td>
+                <td><c:out value="${product.prince}"/></td>
+                <td><c:out value="${product.classify}"/></td>
                 <td>
                     <a href="./products?action=edit&id=${product.id}">Edit</a>
                     <a href="./products?action=delete&id=${product.id}">Delete</a>

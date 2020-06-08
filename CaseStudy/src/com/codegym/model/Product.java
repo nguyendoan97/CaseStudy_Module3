@@ -3,25 +3,28 @@ package com.codegym.model;
 public class Product {
     protected int id;
     protected String name;
-    protected String email;
-    protected String country;
+    protected String image;
+    protected int prince;
+    protected String classify;
 
     public Product() {}
 
-    public Product(String name, String email, String country) {
+    public Product(String name, String image,int prince, String classify) {
         super();
         this.name = name;
-        this.email = email;
-        this.country = country;
+        this.image = image;
+        this.prince = prince;
+        this.classify = classify;
     }
 
-    public Product(int id, String name, String email, String country) {
-        super();
+    public Product(int id,String name, String image,int prince, String classify) {
         this.id = id;
         this.name = name;
-        this.email = email;
-        this.country = country;
+        this.image = image;
+        this.prince = prince;
+        this.classify = classify;
     }
+
 
     public int getId() {
         return id;
@@ -35,16 +38,25 @@ public class Product {
     public void setName(String name) {
         this.name = name;
     }
-    public String getEmail() {
-        return email;
+    public String getImage() {
+        return image;
     }
-    public void setEmail(String email) {
-        this.email = email;
+    public void setImage(String image) {
+        this.image = image;
     }
-    public String getCountry() {
-        return country;
+
+    public int getPrince() {
+        return prince;
     }
-    public void setCountry(String country) {
-        this.country = country;
+
+    public void setPrince(int prince) {
+        this.prince = prince;
+    }
+
+    public String getClassify() {
+        return classify;
+    }
+    public void setClassify(String classify) {
+        this.classify = classify;
     }
 }

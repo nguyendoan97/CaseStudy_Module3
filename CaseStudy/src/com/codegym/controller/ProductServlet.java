@@ -35,7 +35,7 @@ public class ProductServlet extends HttpServlet {
                     insertUser(request, response);
                     break;
                 case "edit":
-                    updateUser(request, response);
+                    updateProduct(request, response);
                     break;
                 case "listbycountry":
                     listUserByCountry(request,response);
@@ -95,7 +95,7 @@ public class ProductServlet extends HttpServlet {
     private void listUserByCountry(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
         String country = request.getParameter("country");
-        List<Product> listCountry = productDAO.selectUserByCount(country);
+        List<Product> listCountry = productDAO.selectUserByClassify(country);
         request.setAttribute("listCountry", listCountry);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/product/listbycountry.jsp");
         System.out.println(dispatcher);
@@ -127,23 +127,24 @@ public class ProductServlet extends HttpServlet {
     private void insertUser(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
         String name = request.getParameter("name");
-        String email = request.getParameter("email");
-        String country = request.getParameter("country");
-        Product newProduct = new Product(name, email, country);
-        productDAO.insertUser(newProduct);
+        String image = request.getParameter("image");
+        int prince = Integer.parseInt(request.getParameter("prince"));
+        String classify = request.getParameter("classify");
+        Product newProduct = new Product(name, image,prince, classify);
+        productDAO.insertProduct(newProduct);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/product/create.jsp");
         dispatcher.forward(request, response);
     }
 
-    private void updateUser(HttpServletRequest request, HttpServletResponse response)
+    private void updateProduct(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
         int id = Integer.parseInt(request.getParameter("id"));
         String name = request.getParameter("name");
-        String email = request.getParameter("email");
-        String country = request.getParameter("country");
-
-        Product book = new Product(id, name, email, country);
-        productDAO.updateUser(book);
+        String image = request.getParameter("image");
+        int prince = Integer.parseInt(request.getParameter("prince"));
+        String classify = request.getParameter("classify");
+        Product product = new Product(id,name, image,prince, classify);
+        productDAO.updateUser(product);
         RequestDispatcher dispatcher = request.getRequestDispatcher("product/edit.jsp");
         dispatcher.forward(request, response);
     }

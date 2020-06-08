@@ -106,9 +106,9 @@
         <c:forEach items="${listProduct}" var="product">
             <div class="card card-default" >
                 <div class="card-body">
-                    <img src="${product.email}" width="260px" height="330px" alt="Ảnh"/>
+                    <img src="${product.image}" width="260px" height="330px" alt="Ảnh"/>
                 </div>
-                <div class="card-footer">
+                <div class="card-footer" style="height: 60px">
                     <c:out value="${product.name}"></c:out>
                 </div>
             </div>

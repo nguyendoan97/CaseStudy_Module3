@@ -20,14 +20,16 @@
             <th>ID</th>
             <th>Tên SP</th>
             <th>URL Hình Ảnh</th>
+            <th>Giá SP</th>
             <th>Phân Loại</th>
         </tr>
         <c:forEach var="product" items="${listCountry}">
             <tr>
                 <td><c:out value="${product.id}"/></td>
                 <td><c:out value="${product.name}"/></td>
-                <td><c:out value="${product.email}"/></td>
-                <td><c:out value="${product.country}"/></td>
+                <td><c:out value="${product.image}"/></td>
+                <td><c:out value="${product.prince}"/></td>
+                <td><c:out value="${product.classify}"/></td>
             </tr>
         </c:forEach>
     </table>

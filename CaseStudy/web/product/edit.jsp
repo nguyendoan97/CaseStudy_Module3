@@ -31,13 +31,18 @@
             <tr>
                 <th>URL Hình Ảnh :</th>
                 <td>
-                    <input type="text" name="email" size="45" value="<c:out value='${product.email}'/>">
+                    <input type="text" name="image" size="45" value="<c:out value='${product.image}'/>">
+                </td>
+            </tr><tr>
+                <th>Giá SP :</th>
+                <td>
+                    <input type="number" name="prince" size="45" value="<c:out value='${product.prince}'/>">
                 </td>
             </tr>
             <tr>
                 <th>Phân Loại :</th>
                 <td>
-                    <input type="text" name="country" size="45" value="<c:out value='${product.country}'/>"/>
+                    <input type="text" name="classify" size="45" value="<c:out value='${product.classify}'/>"/>
                 </td>
             </tr>
             <tr>

@@ -11,12 +11,12 @@ public class ProductDAO {
     private String jdbcUsername= "root";
     private String jdbcPassword= "123456";
 
-    private static final String INSERT_USERS_SQL="INSERT INTO users"+"(name,email,country)VALUES"+"(?,?,?);";
-    private static final String SELECT_USER_BY_ID = "select id,name,email,country from users where id=?;";
-    private static final String SELECT_USER_BY_COUNTRY = "select id,name,email,country from users where country=?;";
-    private static final String SELECT_ALL_USERS = "select * from users";
-    private static final String DELETE_USERS_SQL = "delete from users where id = ?;";
-    private static final String UPDATE_USERS_SQL = "update users set name = ?,email= ?, country =? where id = ?;";
+    private static final String INSERT_USERS_SQL="INSERT INTO product(name,image,prince,classify)VALUES(?,?,?,?);";
+    private static final String SELECT_USER_BY_ID = "select id,name,image,prince,classify from product where id=?;";
+    private static final String SELECT_USER_BY_CLASSIFY = "select id,name,image,prince,classify from product where classify=?;";
+    private static final String SELECT_ALL_USERS = "select * from product";
+    private static final String DELETE_USERS_SQL = "delete from product where id = ?;";
+    private static final String UPDATE_USERS_SQL = "update product set name = ?,image= ?, prince =? ,classify=? where id = ?;";
 
     public ProductDAO() {
     }
@@ -35,12 +35,13 @@ public class ProductDAO {
     }
 
 
-    public void insertUser(Product product) throws SQLException {
+    public void insertProduct(Product product) throws SQLException {
         System.out.println(INSERT_USERS_SQL);
         try (Connection connection = getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USERS_SQL)) {
             preparedStatement.setString(1, product.getName());
-            preparedStatement.setString(2, product.getEmail());
-            preparedStatement.setString(3, product.getCountry());
+            preparedStatement.setString(2, product.getImage());
+            preparedStatement.setInt(3,product.getPrince());
+            preparedStatement.setString(4, product.getClassify());
             System.out.println(preparedStatement);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -50,33 +51,30 @@ public class ProductDAO {
 
     public Product selectUser(int id) {
         Product product = null;
-        // Step 1: Establishing a Connection
+
         try (Connection connection = getConnection();
-             // Step 2:Create a statement using connection object
              PreparedStatement preparedStatement = connection.prepareStatement(SELECT_USER_BY_ID);) {
             preparedStatement.setInt(1, id);
             System.out.println(preparedStatement);
-            // Step 3: Execute the query or update query
             ResultSet rs = preparedStatement.executeQuery();
-
-            // Step 4: Process the ResultSet object.
             while (rs.next()) {
                 String name = rs.getString("name");
-                String email = rs.getString("email");
-                String country = rs.getString("country");
-                product = new Product(id, name, email, country);
+                String image = rs.getString("image");
+                int prince =rs.getInt("prince");
+                String classify = rs.getString("classify");
+                product = new Product(id, name, image,prince, classify);
             }
         } catch (SQLException e) {
             printSQLException(e);
         }
         return product;
     }
-    public List<Product> selectUserByCount(String countrys) {
+    public List<Product> selectUserByClassify(String countrys) {
         List<Product> products = new ArrayList<>();
 
         try (Connection connection = getConnection();
 
-             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_USER_BY_COUNTRY);) {
+             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_USER_BY_CLASSIFY);) {
             preparedStatement.setString(1, countrys);
             System.out.println(preparedStatement);
 
@@ -86,9 +84,10 @@ public class ProductDAO {
             while (rs.next()) {
                 int id = rs.getInt("id");
                 String name = rs.getString("name");
-                String email = rs.getString("email");
-                String country = rs.getString("country");
-                products.add(new Product(id, name, email, country));
+                String image = rs.getString("image");
+                int prince =rs.getInt("prince");
+                String classify = rs.getString("classify");
+                products.add(new Product(id,name,image,prince,classify));
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -113,9 +112,10 @@ public class ProductDAO {
             while (rs.next()) {
                 int id = rs.getInt("id");
                 String name = rs.getString("name");
-                String email = rs.getString("email");
-                String country = rs.getString("country");
-                products.add(new Product(id, name, email, country));
+                String image = rs.getString("image");
+                int prince =rs.getInt("prince");
+                String classify = rs.getString("classify");
+                products.add(new Product(id,name,image,prince,classify));
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -137,9 +137,10 @@ public class ProductDAO {
         boolean rowUpdated;
         try (Connection connection = getConnection(); PreparedStatement statement = connection.prepareStatement(UPDATE_USERS_SQL);) {
             statement.setString(1, product.getName());
-            statement.setString(2, product.getEmail());
-            statement.setString(3, product.getCountry());
-            statement.setInt(4, product.getId());
+            statement.setString(2, product.getImage());
+            statement.setInt(3,product.getPrince());
+            statement.setString(4, product.getClassify());
+            statement.setInt(5, product.getId());
 
             rowUpdated = statement.executeUpdate() > 0;
         }
@@ -162,42 +163,42 @@ public class ProductDAO {
         }
     }
 
-    private Product getUserById(int id) throws SQLException {
-        Product product = null;
-        String query = "{call get_user_by_id(?)}";
-        try(Connection connection = getConnection();
-            CallableStatement callableStatement = connection.prepareCall(query)){
-            callableStatement.setInt(1,id);
-            ResultSet rs = callableStatement.executeQuery();
-
-            while (rs.next()){
-                String name = rs.getString("name");
-
-                String email = rs.getString("email");
-
-                String country = rs.getString("country");
-
-                product = new Product(id, name, email, country);
-            }
-        } catch (SQLException e) {
-
-            printSQLException(e);
-        }
-        return product;
-    }
-
-    public void insertUserStore(Product product) throws SQLException {
-        String query = "{call insert_user(?,?,?)}";
-        try(Connection connection = getConnection()){
-            CallableStatement callableStatement = connection.prepareCall(query);
-            callableStatement.setString(1, product.getName());
-            callableStatement.setString(2, product.getEmail());
-            callableStatement.setString(3, product.getCountry());
-            System.out.println(callableStatement);
-            callableStatement.executeUpdate();
-
-        }
-    }
+//    private Product getUserById(int id) throws SQLException {
+//        Product product = null;
+//        String query = "{call get_user_by_id(?)}";
+//        try(Connection connection = getConnection();
+//            CallableStatement callableStatement = connection.prepareCall(query)){
+//            callableStatement.setInt(1,id);
+//            ResultSet rs = callableStatement.executeQuery();
+//
+//            while (rs.next()){
+//                String name = rs.getString("name");
+//
+//                String email = rs.getString("email");
+//
+//                String country = rs.getString("country");
+//
+//                product = new Product(id, name, email, country);
+//            }
+//        } catch (SQLException e) {
+//
+//            printSQLException(e);
+//        }
+//        return product;
+//    }
+//
+//    public void insertUserStore(Product product) throws SQLException {
+//        String query = "{call insert_user(?,?,?)}";
+//        try(Connection connection = getConnection()){
+//            CallableStatement callableStatement = connection.prepareCall(query);
+//            callableStatement.setString(1, product.getName());
+//            callableStatement.setString(2, product.getImage());
+//            callableStatement.setString(3, product.getClassify());
+//            System.out.println(callableStatement);
+//            callableStatement.executeUpdate();
+//
+//        }
+//    }
 
 }
 

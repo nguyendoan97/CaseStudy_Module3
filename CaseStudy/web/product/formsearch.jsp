@@ -12,7 +12,7 @@
 </head>
 <body>
 <form method="post">
-    <input type="text" name="country" size="45" id="country"/>
+    <input type="text" name="classify" size="45" id="classify"/>
     <input type="submit" value="Search"/>
 </form>
 </body>
