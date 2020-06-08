@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <title>Case Study Module 3</title>
 
-    <link rel="stylesheet" href="http://doancode.mobie.in/style.css">
+    <link rel="stylesheet" href="product/style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"/>
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
