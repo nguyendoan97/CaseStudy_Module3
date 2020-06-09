@@ -107,6 +107,9 @@
             <div class="card card-default" >
                 <div class="card-body">
                     <img src="${product.image}" width="260px" height="330px" alt="Ảnh"/>
+                    <div id="chitiet">
+                        <button type="submit" style="margin-top: -40px;margin-left: 175px;">đặt hàng</button>
+                    </div>
                 </div>
                 <div class="card-footer" style="height: 60px">
                     <c:out value="${product.name}"></c:out>

@@ -234,3 +234,13 @@ input{
     margin: 5px;
 }
 
+#chitiet{
+    visibility: hidden;
+    width: 280px;
+    height: 50px;
+    position: absolute;
+    margin-top: 0px;
+}
+.card-body:hover>#chitiet{
+    visibility: visible;
+}
