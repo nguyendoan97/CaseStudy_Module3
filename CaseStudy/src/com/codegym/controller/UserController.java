@@ -52,14 +52,14 @@ public class UserController extends HttpServlet {
             session.setAttribute("IS_LOGGINED", true);
             session.setAttribute("ROLE", user.getRole());
 
-            resp.sendRedirect("/index.jsp");
+            resp.sendRedirect("/products?action=list_customer");
 
         }else {
 
             // thong bao loi dang nhap
 
             req.setAttribute("message", "Đăng nhập không thành công");
-            RequestDispatcher dispatcher = req.getRequestDispatcher("./login.jsp");
+            RequestDispatcher dispatcher = req.getRequestDispatcher("/products?action=index");
             dispatcher.forward(req, resp);
         }
 

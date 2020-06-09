@@ -58,7 +58,7 @@ public class ProductServlet extends HttpServlet {
         try {
             switch (action) {
                 case "index":
-
+                    showIndex(request,response);
                 case "create":
                     showNewForm(request, response);
                     break;
@@ -68,8 +68,8 @@ public class ProductServlet extends HttpServlet {
                 case "delete":
                     deleteUser(request, response);
                     break;
-                case "listbycountry":
-                    showSearchForm(request,response);
+                case "list_customer":
+                    list_customer(request,response);
                     break;
                 case "list":
                     listUser(request, response);
@@ -100,16 +100,12 @@ public class ProductServlet extends HttpServlet {
     }
     private void listUserByCountry(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
-        String country = request.getParameter("country");
-        List<Product> listCountry = productDAO.selectUserByClassify(country);
-        request.setAttribute("listCountry", listCountry);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/product/listbycountry.jsp");
-        System.out.println(dispatcher);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/product/list_customer.jsp");
         dispatcher.forward(request, response);
     }
-    private void showSearchForm(HttpServletRequest request, HttpServletResponse response)
+    private void list_customer(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/product/formsearch.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/product/list_customer.jsp");
         dispatcher.forward(request, response);
     }
     private void login(HttpServletRequest request, HttpServletResponse response)

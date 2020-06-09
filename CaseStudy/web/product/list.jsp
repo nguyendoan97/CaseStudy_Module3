@@ -56,6 +56,9 @@
             <div id="sumbit">
                 <button type="submit">Đăng nhập</button>
             </div>
+            <c:if test="${requestScope['message'] != null}">
+                <c:out value="${message}"></c:out>
+            </c:if>
         </form>
 
         <div style="display: inline ;padding: 20px; ">

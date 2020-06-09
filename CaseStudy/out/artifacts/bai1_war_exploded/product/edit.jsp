@@ -9,7 +9,7 @@
 <div style="text-align: center;">
     <h1>Quản Lý Sản Phẩm</h1>
     <h2>
-        <a href="./products?action=products">Quay Lại Danh Sách</a>
+        <a href="./products?action=list">Quay Lại Danh Sách</a>
     </h2>
 
 </div>
