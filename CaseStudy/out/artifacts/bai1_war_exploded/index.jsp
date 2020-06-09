@@ -16,29 +16,6 @@
       <link rel="stylesheet" href="product/index.css"/>
   </head>
   <body>
-  <div class="container">
-      <div class="row">
-          <div class="col col-md-3">
-              <img src="http://doancode.mobie.in/logoshop.png" height="72" width="197"/></div>
-          </div>
-          <div class="col col-md-9">
-              <ul>
-                  <li><a href="">Trang Chủ</a></li>
-                  <li><a href="">Bộ Sưu Tập</a>
-                      <ul>
-                          <li><a href="">Hot Tháng 5</a></li>
-                          <li><a href="">Mẫu Nam 2020</a></li>
-                          <li><a href="">Thanh Lịch</a></li>
-                      </ul>
-                  </li>
-                  <li><a href="">Sự Kiện</a></li>
-                  <li><a href="">Bán Chạy</a></li>
-                  <li><a href="">Flash Sale</a></li>
-
-              </ul>
-
-          </div>
-      </div>
-  </div>
+  <h1 style="color: deeppink">Long Đẹp Trai</h1>
   </body>
 </html>

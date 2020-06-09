@@ -46,7 +46,15 @@ public class UserController extends HttpServlet {
 
             resp.sendRedirect("/products?action=list");
 
-        } else {
+        } else if (user.getPassword().equals(password)& user.getRole().equals("customer")) {
+
+            HttpSession session = req.getSession();
+            session.setAttribute("IS_LOGGINED", true);
+            session.setAttribute("ROLE", user.getRole());
+
+            resp.sendRedirect("/index.jsp");
+
+        }else {
 
             // thong bao loi dang nhap
 
