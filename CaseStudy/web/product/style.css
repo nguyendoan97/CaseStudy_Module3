@@ -234,13 +234,29 @@ input{
     margin: 5px;
 }
 
-#chitiet{
+.card-body>#nut{
     visibility: hidden;
     width: 280px;
     height: 50px;
     position: absolute;
     margin-top: 0px;
 }
-.card-body:hover>#chitiet{
+.card-body:hover>#nut{
     visibility: visible;
+}
+
+#nut:hover>#chitiet{
+    visibility: visible;
+    font-family: "Times New Roman";
+    font-size: 18px;
+    color: #18d5ff;
+    margin-top: -330px;
+    width: 256px;
+    height: 330px;
+    border: 2px solid deeppink;
+    border-radius: 5px;
+    background-color: rgba(0,0,0,0.4);
+}
+#nut>#chitiet{
+    visibility: hidden;
 }

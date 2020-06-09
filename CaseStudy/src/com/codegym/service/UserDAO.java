@@ -1,16 +1,14 @@
 package com.codegym.service;
 
+import com.codegym.model.Product;
 import com.codegym.utils.DBConnection;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class UserDAO {
-    private DBConnection connection;
+    DBConnection connection;
 
     public UserDAO(DBConnection connection) {
         this.connection = connection;

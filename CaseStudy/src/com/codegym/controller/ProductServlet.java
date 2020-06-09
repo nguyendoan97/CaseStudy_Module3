@@ -105,6 +105,8 @@ public class ProductServlet extends HttpServlet {
     }
     private void list_customer(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        List<Product> listProduct = productDAO.selectAllUsers();
+        request.setAttribute("listProduct", listProduct);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/product/list_customer.jsp");
         dispatcher.forward(request, response);
     }

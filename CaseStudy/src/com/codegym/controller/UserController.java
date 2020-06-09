@@ -59,7 +59,7 @@ public class UserController extends HttpServlet {
             // thong bao loi dang nhap
 
             req.setAttribute("message", "Đăng nhập không thành công");
-            RequestDispatcher dispatcher = req.getRequestDispatcher("/products?action=index");
+            RequestDispatcher dispatcher = req.getRequestDispatcher("./login.jsp");
             dispatcher.forward(req, resp);
         }
 
