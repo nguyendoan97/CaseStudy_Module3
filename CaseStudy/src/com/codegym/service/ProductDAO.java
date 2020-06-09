@@ -1,15 +1,16 @@
 package com.codegym.service;
 
 import com.codegym.model.Product;
+import com.codegym.utils.DBConnection;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ProductDAO {
-    private String jdbcURL="jdbc:mysql://localhost:3306/demo_user?useUnicode=yes&characterEncoding=UTF-8";
-    private String jdbcUsername= "root";
-    private String jdbcPassword= "123456";
+//    private String jdbcURL="jdbc:mysql://localhost:3306/demo_user?useUnicode=yes&characterEncoding=UTF-8";
+//    private String jdbcUsername= "root";
+//    private String jdbcPassword= "123456";
 
     private static final String INSERT_USERS_SQL="INSERT INTO product(name,image,prince,classify)VALUES(?,?,?,?);";
     private static final String SELECT_USER_BY_ID = "select id,name,image,prince,classify from product where id=?;";
@@ -17,27 +18,28 @@ public class ProductDAO {
     private static final String SELECT_ALL_USERS = "select * from product";
     private static final String DELETE_USERS_SQL = "delete from product where id = ?;";
     private static final String UPDATE_USERS_SQL = "update product set name = ?,image= ?, prince =? ,classify=? where id = ?;";
-
-    public ProductDAO() {
+    DBConnection dbConnection;
+    public ProductDAO(DBConnection dbConnection) {
+        this.dbConnection = dbConnection;
     }
 
-    protected Connection getConnection(){
-        Connection  connection = null;
-        try{
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            connection = DriverManager.getConnection(jdbcURL,jdbcUsername,jdbcPassword);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return connection;
-    }
+//    protected Connection getConnection(){
+//        Connection  connection = null;
+//        try{
+//            Class.forName("com.mysql.cj.jdbc.Driver");
+//            connection = DriverManager.getConnection(jdbcURL,jdbcUsername,jdbcPassword);
+//        } catch (ClassNotFoundException e) {
+//            e.printStackTrace();
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//        return connection;
+//    }
 
 
     public void insertProduct(Product product) throws SQLException {
         System.out.println(INSERT_USERS_SQL);
-        try (Connection connection = getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USERS_SQL)) {
+        try (Connection connection = dbConnection.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USERS_SQL)) {
             preparedStatement.setString(1, product.getName());
             preparedStatement.setString(2, product.getImage());
             preparedStatement.setInt(3,product.getPrince());
@@ -52,7 +54,7 @@ public class ProductDAO {
     public Product selectUser(int id) {
         Product product = null;
 
-        try (Connection connection = getConnection();
+        try (Connection connection = dbConnection.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SELECT_USER_BY_ID);) {
             preparedStatement.setInt(1, id);
             System.out.println(preparedStatement);
@@ -72,7 +74,7 @@ public class ProductDAO {
     public List<Product> selectUserByClassify(String countrys) {
         List<Product> products = new ArrayList<>();
 
-        try (Connection connection = getConnection();
+        try (Connection connection = dbConnection.getConnection();
 
              PreparedStatement preparedStatement = connection.prepareStatement(SELECT_USER_BY_CLASSIFY);) {
             preparedStatement.setString(1, countrys);
@@ -100,13 +102,14 @@ public class ProductDAO {
         // using try-with-resources to avoid closing resources (boiler plate code)
         List<Product> products = new ArrayList<>();
         // Step 1: Establishing a Connection
-        try (Connection connection = getConnection();
+        try {
+            Statement statement = dbConnection.getConnection().createStatement();
+
 
              // Step 2:Create a statement using connection object
-             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_USERS);) {
-            System.out.println(preparedStatement);
+
             // Step 3: Execute the query or update query
-            ResultSet rs = preparedStatement.executeQuery();
+            ResultSet rs = statement.executeQuery(SELECT_ALL_USERS);
 
             // Step 4: Process the ResultSet object.
             while (rs.next()) {
@@ -125,7 +128,7 @@ public class ProductDAO {
 
     public boolean deleteUser(int id) throws SQLException {
         boolean rowDeleted;
-        try (Connection connection = getConnection();
+        try (Connection connection = dbConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(DELETE_USERS_SQL);) {
             statement.setInt(1, id);
             rowDeleted = statement.executeUpdate() > 0;
@@ -135,7 +138,7 @@ public class ProductDAO {
 
     public boolean updateUser(Product product) throws SQLException {
         boolean rowUpdated;
-        try (Connection connection = getConnection(); PreparedStatement statement = connection.prepareStatement(UPDATE_USERS_SQL);) {
+        try (Connection connection = dbConnection.getConnection(); PreparedStatement statement = connection.prepareStatement(UPDATE_USERS_SQL);) {
             statement.setString(1, product.getName());
             statement.setString(2, product.getImage());
             statement.setInt(3,product.getPrince());

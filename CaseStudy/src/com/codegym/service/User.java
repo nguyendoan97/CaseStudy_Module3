@@ -3,14 +3,14 @@ package com.codegym.service;
 public class User {
     private String username;
     private String password;
-    private int role;
+    private String role;
 
     public User(String username, String password) {
         this.username = username;
         this.password = password;
     }
 
-    public User(String username, String password, int role) {
+    public User(String username, String password,String role) {
         this.username = username;
         this.password = password;
         this.role = role;
@@ -32,11 +32,11 @@ public class User {
         this.password = password;
     }
 
-    public int getRole() {
+    public String getRole() {
         return role;
     }
 
-    public void setRole(int role) {
+    public void setRole(String role) {
         this.role = role;
     }
 }

@@ -2,6 +2,7 @@ package com.codegym.controller;
 
 import com.codegym.service.ProductDAO;
 import com.codegym.model.Product;
+import com.codegym.utils.DBConnection;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -18,9 +19,10 @@ import javax.servlet.http.HttpServletResponse;
 public class ProductServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private ProductDAO productDAO;
+    private DBConnection dbConnection=DBConnection.getInstance();
 
     public void init() {
-        productDAO = new ProductDAO();
+        productDAO = new ProductDAO(dbConnection);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -56,7 +58,7 @@ public class ProductServlet extends HttpServlet {
         try {
             switch (action) {
                 case "index":
-                    showIndex(request,response);
+
                 case "create":
                     showNewForm(request, response);
                     break;
@@ -69,8 +71,12 @@ public class ProductServlet extends HttpServlet {
                 case "listbycountry":
                     showSearchForm(request,response);
                     break;
-                default:
+                case "list":
                     listUser(request, response);
+                    break;
+                default:
+//                    login(request,response);
+                    showIndex(request,response);
                     break;
             }
         } catch (SQLException ex) {
@@ -104,6 +110,11 @@ public class ProductServlet extends HttpServlet {
     private void showSearchForm(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         RequestDispatcher dispatcher = request.getRequestDispatcher("/product/formsearch.jsp");
+        dispatcher.forward(request, response);
+    }
+    private void login(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/product/login.jsp");
         dispatcher.forward(request, response);
     }
 

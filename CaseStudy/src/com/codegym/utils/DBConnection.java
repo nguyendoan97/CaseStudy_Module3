@@ -11,14 +11,14 @@ public class DBConnection {
     private Connection connection;
 
     private DBConnection() {
-         String URL="jdbc:mysql://localhost:3306/demo_user?useUnicode=yes&characterEncoding=UTF-8";
+         String URL="jdbc:mysql://localhost:3306/demo_user";
          String Username= "root";
          String Password= "123456";
 
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            this.connection = DriverManager.getConnection(URL, Username, Password);
+            this.connection = DriverManager.getConnection(URL,Username,Password);
             System.out.println("Kết nối thành công");
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
