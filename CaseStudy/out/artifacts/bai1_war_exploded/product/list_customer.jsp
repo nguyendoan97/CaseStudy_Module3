@@ -43,7 +43,43 @@
 <div id="sidebar">
 
     <div id="login">
-        <p>Xin Chào,<b>${user.getName()}</b></p>
+        <p>Xin Chào,
+                <%
+        HttpSession ses = request.getSession();
+        Boolean islogin = (Boolean)ses.getAttribute("IS_LOGGINED");
+      %>
+            <c:set var="login" value="<%=islogin%>"/>
+            <c:choose>
+            <c:when test="${login==null}">
+            <a href="login">
+                <button class="btn btn-secondary" type="button">
+                    <i class="fas fa-user-friends"></i> Log In
+
+                </button>
+            </a>
+            </c:when>
+            <c:when test="${login==false}">
+            <a href="login">
+                <button class="btn btn-secondary" type="button">
+                    <i class="fas fa-user-friends"></i> Log In
+
+                </button>
+            </a>
+            </c:when>
+            <c:when test="${login==true}">
+                    <%String displayName = ses.getAttribute("name_display").toString();%>
+            <a href="staff?action">
+                <button class="btn btn-secondary disabled" type="button">
+
+                    <i class="fas fa-user-friends"></i> <%=displayName%>
+
+                </button>
+            </a>
+
+            </c:when>
+
+            </c:choose>
+
     </div>
 
     <ul>

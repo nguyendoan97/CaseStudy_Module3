@@ -42,31 +42,29 @@
 </div>
 <div id="sidebar">
 
-    <div id="login">
-        <form action="/login" method="post">
-            <h3 style="text-align: center;padding-left: 15px ;color: blue">ĐĂNG NHẬP</h3>
-            <div id="account">
-                <i class="fas fa-user" style="padding-right: 5px ; color: blue"></i>
-                <input type="text" name="username" style="height: 25px" placeholder="Tài Khoản"/>
-            </div>
-            <div id="password">
-                <i class="fas fa-unlock-alt" style="padding-right: 5px ; color: blue"></i>
-                <input type="password" name="password" style="height: 25px" placeholder="Mật Khẩu"/>
-            </div>
-            <div id="sumbit">
-                <button type="submit">Đăng nhập</button>
-            </div>
-            <c:if test="${requestScope['message'] != null}">
-                <c:out value="${message}"></c:out>
-            </c:if>
-        </form>
+<%--    <div id="login">--%>
+<%--        <form action="/login" method="post">--%>
+<%--            <h3 style="text-align: center;padding-left: 15px ;color: blue">ĐĂNG NHẬP</h3>--%>
+<%--            <div id="account">--%>
+<%--                <i class="fas fa-user" style="padding-right: 5px ; color: blue"></i>--%>
+<%--                <input type="text" name="username" style="height: 25px" placeholder="Tài Khoản"/>--%>
+<%--            </div>--%>
+<%--            <div id="password">--%>
+<%--                <i class="fas fa-unlock-alt" style="padding-right: 5px ; color: blue"></i>--%>
+<%--                <input type="password" name="password" style="height: 25px" placeholder="Mật Khẩu"/>--%>
+<%--            </div>--%>
+<%--            <div id="sumbit">--%>
+<%--                <button type="submit">Đăng nhập</button>--%>
+<%--            </div>--%>
 
-        <div style="display: inline ;padding: 20px; ">
-            <a href="" style="padding-left:10px;text-decoration: none">Đăng Ký</a>
-            <a href="" style="padding: 10px;padding-top: 20px;text-decoration: none">Quên mật khẩu</a>
-        </div>
+<%--        </form>--%>
 
-    </div>
+<%--        <div style="display: inline ;padding: 20px; ">--%>
+<%--            <a href="" style="padding-left:10px;text-decoration: none">Đăng Ký</a>--%>
+<%--            <a href="" style="padding: 10px;padding-top: 20px;text-decoration: none">Quên mật khẩu</a>--%>
+<%--        </div>--%>
+
+<%--    </div>--%>
 
     <ul>
         <li><a href="">Thời Trang Nữ</a>
