@@ -43,7 +43,7 @@
 <div id="sidebar">
 
     <div id="login">
-        <form action="/login" method="post">
+        <form method="post">
             <h3 style="text-align: center;padding-left: 15px ;color: blue">ĐĂNG NHẬP</h3>
             <div id="account">
                 <i class="fas fa-user" style="padding-right: 5px ; color: blue"></i>
@@ -113,8 +113,9 @@
             <div class="card card-default" >
                 <div class="card-body">
                     <img src="${product.image}" width="260px" height="330px" alt="Ảnh"/>
-                    <div id="chitiet">
-                        <button type="submit" style="margin-top: -40px;margin-left: 175px;">đặt hàng</button>
+                    <div id="nut">
+                        <button type="submit" style="margin-top: -40px;margin-left: 168px;">Đặt Hàng</button>
+                        <button type="submit" style="margin-top: -40px;margin-left: 90px;">Chi Tiết</button>
                     </div>
                 </div>
                 <div class="card-footer" style="height: 60px">

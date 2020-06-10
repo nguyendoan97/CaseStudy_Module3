@@ -1,4 +1,4 @@
-package com.codegym.service;
+package com.codegym.model;
 
 public class User {
     private String username;

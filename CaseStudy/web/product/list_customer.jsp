@@ -91,28 +91,30 @@
             <div class="card card-default" >
                 <div class="card-body">
                     <img src="${product.image}" width="260px" height="330px" alt="Ảnh"/>
-                    <div class="chitiet">
-                        <button type="submit" style="margin-top: -40px;margin-left: 168px;">Đặt Hàng</button>
-                    </div>
                     <div id="nut">
-                        <button type="submit" style="margin-top: -40px;margin-left: 90px;">Chi Tiết</button>
-                        <div id="chitiet">
-                            <br>
-                            <br>
-                            <b>Tên Sản Phẩm : <c:out value="${product.name}"></c:out> </b>
-                            <br>
-                            <br>
-                            <b>Mã Sản Phẩm :<c:out value="${product.id}"></c:out> </b>
-                            <br>
-                            <br>
-                            <b>Giá : <c:out value="${product.prince}"></c:out></b>
-                            <br>
-                            <br>
-                            <b>Cảm ơn bạn đã ghé xem !</b>
-                            <br>
-                            <br>
-                        </div>
+                        <button type="submit" style="margin-top: -40px;margin-left: 168px;">Đặt Hàng</button>
+                        <button type="submit" style="margin-top: -40px;margin-left: 90px;">
+                            <a class="non-textdecoration" href="/products?action=view&id=${product.id}">Chi Tiết</a>
+                        </button>
                     </div>
+
+
+<%--                        <div id="chitiet">--%>
+<%--                            <br>--%>
+<%--                            <br>--%>
+<%--                            <b>Tên Sản Phẩm : <c:out value="${product.name}"></c:out> </b>--%>
+<%--                            <br>--%>
+<%--                            <br>--%>
+<%--                            <b>Mã Sản Phẩm :<c:out value="${product.id}"></c:out> </b>--%>
+<%--                            <br>--%>
+<%--                            <br>--%>
+<%--                            <b>Giá : <c:out value="${product.prince}"></c:out></b>--%>
+<%--                            <br>--%>
+<%--                            <br>--%>
+<%--                            <b>Cảm ơn bạn đã ghé xem !</b>--%>
+<%--                            <br>--%>
+<%--                            <br>--%>
+<%--                        </div>--%>
 
                 </div>
                 <div class="card-footer" style="height: 60px">

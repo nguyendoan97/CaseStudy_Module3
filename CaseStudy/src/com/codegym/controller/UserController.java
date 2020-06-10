@@ -1,6 +1,6 @@
 package com.codegym.controller;
 
-import com.codegym.service.User;
+import com.codegym.model.User;
 import com.codegym.service.UserDAO;
 import com.codegym.utils.DBConnection;
 
@@ -38,30 +38,29 @@ public class UserController extends HttpServlet {
 
         User user = userDAO.getByUsername(username);
 
-        if (user.getPassword().equals(password)& user.getRole().equals("admin")) {
+        if (user.getPassword().equals(password)) {
+            if (user.getRole().equals("admin")) {
+                HttpSession session = req.getSession();
+                session.setAttribute("IS_LOGGINED", true);
+                session.setAttribute("ROLE", user.getRole());
 
-            HttpSession session = req.getSession();
-            session.setAttribute("IS_LOGGINED", true);
-            session.setAttribute("ROLE", user.getRole());
+                resp.sendRedirect("/products?action=list");
+            } else {
+                HttpSession session = req.getSession();
+                session.setAttribute("IS_LOGGINED", true);
+                session.setAttribute("ROLE", user.getRole());
 
-            resp.sendRedirect("/products?action=list");
+                resp.sendRedirect("/products?action=list_customer");
+            }
 
-        } else if (user.getPassword().equals(password)& user.getRole().equals("customer")) {
 
-            HttpSession session = req.getSession();
-            session.setAttribute("IS_LOGGINED", true);
-            session.setAttribute("ROLE", user.getRole());
-
-            resp.sendRedirect("/products?action=list_customer");
-
-        }else {
+        } else {
 
             // thong bao loi dang nhap
 
             req.setAttribute("message", "Đăng nhập không thành công");
-            RequestDispatcher dispatcher = req.getRequestDispatcher("./login.jsp");
+            RequestDispatcher dispatcher = req.getRequestDispatcher("/products?action=list");
             dispatcher.forward(req, resp);
         }
-
     }
 }

@@ -109,20 +109,19 @@
 
     <img src="http://doancode.mobie.in/hang-moi-ve-1.jpg" height="80" width="100%"/>
     <div class="col-sm-3 poly-prod">
-        <c:forEach items="${listProduct}" var="product">
-            <div class="card card-default" >
-                <div class="card-body">
-                    <img src="${product.image}" width="260px" height="330px" alt="Ảnh"/>
-                    <div id="nut">
-                        <button type="submit" style="margin-top: -40px;margin-left: 168px;">Đặt Hàng</button>
-                        <button type="submit" style="margin-top: -40px;margin-left: 90px;">Chi Tiết</button>
-                    </div>
-                </div>
-                <div class="card-footer" style="height: 60px">
-                    <c:out value="${product.name}"></c:out>
-                </div>
-            </div>
-        </c:forEach>
+        <div class="card card-default">
+            <img src="<c:out value="${productt.image}"></c:out>" width="300px" height="360px" alt="">
+        </div>
+        <div class="card card-default" style="line-height: 30px">
+            <p>Tên Sản Phẩm : <b><c:out value="${productt.name}"></c:out></b></p>
+            <p>Giá : <b><c:out value="${productt.prince}"></c:out></b></p>
+            <p>Loại Sản Phẩm : <b><c:out value="${productt.classify}"></c:out></b></p>
+        </div>
+        <br>
+        <br>
+        <a href="/products?action=list_customer">Quay lại</a>
+        <br>
+
     </div>
 </div>
 </body>

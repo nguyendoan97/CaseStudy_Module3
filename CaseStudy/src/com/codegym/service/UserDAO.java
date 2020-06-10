@@ -1,11 +1,9 @@
 package com.codegym.service;
 
-import com.codegym.model.Product;
+import com.codegym.model.User;
 import com.codegym.utils.DBConnection;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 
 public class UserDAO {
     DBConnection connection;

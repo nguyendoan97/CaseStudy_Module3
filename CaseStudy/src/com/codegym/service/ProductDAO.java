@@ -12,12 +12,12 @@ public class ProductDAO {
 //    private String jdbcUsername= "root";
 //    private String jdbcPassword= "123456";
 
-    private static final String INSERT_USERS_SQL="INSERT INTO product(name,image,prince,classify)VALUES(?,?,?,?);";
-    private static final String SELECT_USER_BY_ID = "select id,name,image,prince,classify from product where id=?;";
-    private static final String SELECT_USER_BY_CLASSIFY = "select id,name,image,prince,classify from product where classify=?;";
-    private static final String SELECT_ALL_USERS = "select * from product";
-    private static final String DELETE_USERS_SQL = "delete from product where id = ?;";
-    private static final String UPDATE_USERS_SQL = "update product set name = ?,image= ?, prince =? ,classify=? where id = ?;";
+    private static final String INSERT_PRODUCT_SQL ="INSERT INTO product(name,image,prince,classify)VALUES(?,?,?,?);";
+    private static final String SELECT_PRODUCT_BY_ID = "select id,name,image,prince,classify from product where id=?;";
+    private static final String SELECT_PRODUCT_BY_CLASSIFY = "select id,name,image,prince,classify from product where classify=?;";
+    private static final String SELECT_ALL_PRODUCT = "select * from product";
+    private static final String DELETE_PRODUCT_SQL = "delete from product where id = ?;";
+    private static final String UPDATE_PRODUCT_SQL = "update product set name = ?,image= ?, prince =? ,classify=? where id = ?;";
     DBConnection dbConnection;
     public ProductDAO(DBConnection dbConnection) {
         this.dbConnection = dbConnection;
@@ -38,8 +38,8 @@ public class ProductDAO {
 
 
     public void insertProduct(Product product) throws SQLException {
-        System.out.println(INSERT_USERS_SQL);
-        try (Connection connection = dbConnection.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USERS_SQL)) {
+        System.out.println(INSERT_PRODUCT_SQL);
+        try{PreparedStatement preparedStatement = dbConnection.getConnection().prepareStatement(INSERT_PRODUCT_SQL);
             preparedStatement.setString(1, product.getName());
             preparedStatement.setString(2, product.getImage());
             preparedStatement.setInt(3,product.getPrince());
@@ -51,14 +51,12 @@ public class ProductDAO {
         }
     }
 
-    public Product selectUser(int id) {
+    public Product selectProduct(int id) {
         Product product = null;
-
-        try (Connection connection = dbConnection.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_USER_BY_ID);) {
-            preparedStatement.setInt(1, id);
-            System.out.println(preparedStatement);
-            ResultSet rs = preparedStatement.executeQuery();
+        PreparedStatement statement = null;
+        try { statement = dbConnection.getConnection().prepareStatement(SELECT_PRODUCT_BY_ID);
+        statement.setInt(1,id );
+        ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 String name = rs.getString("name");
                 String image = rs.getString("image");
@@ -75,8 +73,7 @@ public class ProductDAO {
         List<Product> products = new ArrayList<>();
 
         try (Connection connection = dbConnection.getConnection();
-
-             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_USER_BY_CLASSIFY);) {
+             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_PRODUCT_BY_CLASSIFY);) {
             preparedStatement.setString(1, countrys);
             System.out.println(preparedStatement);
 
@@ -97,21 +94,12 @@ public class ProductDAO {
         return products;
     }
 
-    public List<Product> selectAllUsers() {
-
-        // using try-with-resources to avoid closing resources (boiler plate code)
+    public List<Product> selectAllProduct() {
         List<Product> products = new ArrayList<>();
         // Step 1: Establishing a Connection
         try {
             Statement statement = dbConnection.getConnection().createStatement();
-
-
-             // Step 2:Create a statement using connection object
-
-            // Step 3: Execute the query or update query
-            ResultSet rs = statement.executeQuery(SELECT_ALL_USERS);
-
-            // Step 4: Process the ResultSet object.
+            ResultSet rs = statement.executeQuery(SELECT_ALL_PRODUCT);
             while (rs.next()) {
                 int id = rs.getInt("id");
                 String name = rs.getString("name");
@@ -126,28 +114,29 @@ public class ProductDAO {
         return products;
     }
 
-    public boolean deleteUser(int id) throws SQLException {
+    public void deleteProduct(int id) throws SQLException {
         boolean rowDeleted;
-        try (Connection connection = dbConnection.getConnection();
-             PreparedStatement statement = connection.prepareStatement(DELETE_USERS_SQL);) {
+        try {
+            PreparedStatement statement = dbConnection.getConnection().prepareStatement(DELETE_PRODUCT_SQL);
             statement.setInt(1, id);
-            rowDeleted = statement.executeUpdate() > 0;
+            statement.execute();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
         }
-        return rowDeleted;
     }
 
-    public boolean updateUser(Product product) throws SQLException {
+        public void updateProduct(Product product) throws SQLException {
         boolean rowUpdated;
-        try (Connection connection = dbConnection.getConnection(); PreparedStatement statement = connection.prepareStatement(UPDATE_USERS_SQL);) {
+        try {PreparedStatement statement = dbConnection.getConnection().prepareStatement(UPDATE_PRODUCT_SQL);
             statement.setString(1, product.getName());
             statement.setString(2, product.getImage());
             statement.setInt(3,product.getPrince());
             statement.setString(4, product.getClassify());
             statement.setInt(5, product.getId());
-
-            rowUpdated = statement.executeUpdate() > 0;
+            statement.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
         }
-        return rowUpdated;
     }
 
     private void printSQLException(SQLException ex) {
