@@ -174,6 +174,10 @@
 
     </div>
 </div>
+<div class="card-footer text-muted" style="text-align: center ; height: 80px">
+    Case Study Module 3 <br>
+    Nguyễn Hồng Đoàn C0220I1
+</div>
 
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

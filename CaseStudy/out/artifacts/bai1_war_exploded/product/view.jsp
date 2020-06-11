@@ -162,6 +162,10 @@
                         <p>Giá : <b><c:out value="${productt.prince}"></c:out></b></p>
                         <p>Loại Sản Phẩm : <b><c:out value="${productt.classify}"></c:out></b></p>
                         <br>
+                        <div id="nut">
+                            <button type="submit" style="margin-top: -30px;margin-left:0;">
+                                <a style="text-decoration: none ; color: white" href="/cart?action=cart&id=${product.id}">Đặt Hàng</a></button>
+                        </div>
                         <br>
                         <a href="/products?action=list_customer">Quay lại</a>
                         <br>
@@ -172,7 +176,10 @@
 
         </div>
     </div>
-
+    <div class="card-footer text-muted" style="text-align: center;height: 80px;margin-top: 30px">
+        Case Study Module 3 <br>
+        Nguyễn Hồng Đoàn C0220I1
+    </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
