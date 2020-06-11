@@ -1,7 +1,9 @@
 package com.codegym.controller;
 
+import com.codegym.model.User;
 import com.codegym.service.ProductDAO;
 import com.codegym.model.Product;
+import com.codegym.service.UserDAO;
 import com.codegym.utils.DBConnection;
 
 import java.io.IOException;
@@ -20,8 +22,9 @@ public class ProductServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private ProductDAO productDAO;
     private DBConnection dbConnection=DBConnection.getInstance();
-
+    private UserDAO userDAO;
     public void init() {
+        userDAO = new UserDAO(dbConnection);
         productDAO = new ProductDAO(dbConnection);
     }
 
@@ -35,6 +38,9 @@ public class ProductServlet extends HttpServlet {
             switch (action) {
                 case "create":
                     insertProduct(request, response);
+                    break;
+                case "reg":
+                    insertUser(request,response);
                     break;
                 case "edit":
                     updateProduct(request, response);
@@ -56,8 +62,6 @@ public class ProductServlet extends HttpServlet {
             switch (action) {
                 case "view":
                     listProductById(request,response);
-                case "index":
-                    showIndex(request,response);
                 case "create":
                     showNewForm(request, response);
                     break;
@@ -66,9 +70,6 @@ public class ProductServlet extends HttpServlet {
                     break;
                 case "delete":
                     deleteProduct(request, response);
-                    break;
-                case "list_customer":
-                    list_customer(request,response);
                     break;
                 default:
                     showIndex(request,response);
@@ -82,7 +83,7 @@ public class ProductServlet extends HttpServlet {
     private void showIndex(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Product> listProduct = productDAO.selectAllProduct();
         request.setAttribute("listProduct", listProduct);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/product/new.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/product/index.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -95,19 +96,6 @@ public class ProductServlet extends HttpServlet {
         RequestDispatcher dispatcher = request.getRequestDispatcher("/product/view.jsp");
         dispatcher.forward(request, response);
     }
-    private void list_customer(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        List<Product> listProduct = productDAO.selectAllProduct();
-        request.setAttribute("listProduct", listProduct);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/product/index.jsp");
-        dispatcher.forward(request, response);
-    }
-    private void login(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/product/login.jsp");
-        dispatcher.forward(request, response);
-    }
-
 
     private void showNewForm(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -157,6 +145,15 @@ public class ProductServlet extends HttpServlet {
         List<Product> listProduct = productDAO.selectAllProduct();
         request.setAttribute("listProduct", listProduct);
         RequestDispatcher dispatcher = request.getRequestDispatcher("product/list_data.jsp");
+        dispatcher.forward(request, response);
+    }
+    private void insertUser(HttpServletRequest request, HttpServletResponse response)
+            throws SQLException, IOException, ServletException {
+        String name = request.getParameter("name");
+        String password = request.getParameter("password");
+        User user = new User(name,password);
+        userDAO.save(user);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/user/login.jsp");
         dispatcher.forward(request, response);
     }
 }

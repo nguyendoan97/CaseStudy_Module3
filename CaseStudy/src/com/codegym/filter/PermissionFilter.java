@@ -21,6 +21,9 @@ public class PermissionFilter implements Filter {
         HttpServletResponse response = (HttpServletResponse) resp;
         HttpSession session = request.getSession();
         Object o = session.getAttribute("ROLE");
+        if (o==null){
+
+        }
         if (o != null) {
             String role = o.toString();
 
@@ -32,8 +35,7 @@ public class PermissionFilter implements Filter {
                 writer.write("<a href=\"/products?action=list_customer\">Quay lại</a>");
             }
         } else {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/user/login.jsp");
-            dispatcher.forward(request, response);
+            ((HttpServletResponse) resp).sendRedirect("/products");
         }
     }
 

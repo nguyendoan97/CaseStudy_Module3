@@ -88,15 +88,7 @@
     </style>
 </head>
 <body>
-<div style="text-align: left">
-    <!-- Button HTML (to Trigger Modal) -->
-    <a href="#myModal" class="trigger-btn" data-toggle="modal">Click đăng nhập</a>
-</div>
 
-<!-- Modal HTML -->
-<div id="myModal" class="modal fade">
-
-</div>
 <div class="modal-dialog modal-login">
     <div class="modal-content">
         <div class="modal-header">
@@ -105,16 +97,21 @@
         </div>
         <div class="modal-body">
             <form action="/login" method="post">
+                <c:if test='${requestScope["message_erro"] != null}'>
+                    <span>${requestScope["message"]}</span>
+                </c:if>
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder=" Tài khoản" required="required">
+                    <input type="text" name="username" class="form-control" placeholder=" Tài khoản" required="required">
                 </div>
                 <div class="form-group">
-                    <input type="password" class="form-control" placeholder=" Mật khẩu" required="required">
+                    <input type="password" name="password" class="form-control" placeholder=" Mật khẩu" required="required">
                 </div>
                 <div class="form-group">
                     <input type="submit" class="btn btn-primary btn-block btn-lg" value="ĐĂNG NHẬP">
                 </div>
             </form>
+
+            <div class="hint-text small"><a href="/user/reg.jsp">Đăng ký</a></div>
             <div class="hint-text small"><a href="#">Quên mật khẩu ?</a></div>
         </div>
     </div>

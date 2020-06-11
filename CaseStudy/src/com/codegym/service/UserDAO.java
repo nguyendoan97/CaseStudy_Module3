@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserDAO {
+
     DBConnection connection;
 
     public UserDAO(DBConnection connection) {
@@ -59,15 +60,15 @@ public class UserDAO {
         return users;
     }
 
-    public void save(String name,String password){
+    public void save(User user){
 
-        String sql = "INSERT INTO customers (name,password) VALUES (?,?)";
+        String sql = "INSERT INTO account (name,password) VALUES (?,?)";
 
         try {
-            PreparedStatement ps = this.connection.getConnection().prepareStatement(sql);
-            ps.setString(1, name);
-            ps.setString(2, password);
-            ps.execute();
+            PreparedStatement preparedStatement = connection.getConnection().prepareStatement(sql);
+            preparedStatement.setString(1, user.getUsername());
+            preparedStatement.setString(2, user.getPassword());
+            preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException("Lỗi thực thi lệnh SQL Insert Into");
         }

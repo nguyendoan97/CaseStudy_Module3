@@ -30,14 +30,14 @@ public class AdminServlet extends HttpServlet {
         if (action == null) {
             action = "";
         }
-        try {
-            switch (action) {
-                case "reg":
-                    insertUser(request,response);
-            }
-        }catch(SQLException throwables) {
-            throwables.printStackTrace();
-        }
+//        try {
+//            switch (action) {
+//                case "reg":
+////                    insertUser(request,response);
+//            }
+//        }catch(SQLException throwables) {
+//            throwables.printStackTrace();
+//        }
 
     }
 
@@ -58,8 +58,10 @@ public class AdminServlet extends HttpServlet {
                     deleteUser(request,response);
                     break;
                 case "reg":
-                    insertUser(request,response);
+                    getReg(request,response);
                     break;
+                default:
+                    listProduct(request,response);
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -91,15 +93,7 @@ public class AdminServlet extends HttpServlet {
         RequestDispatcher dispatcher = request.getRequestDispatcher("user/user_data.jsp");
         dispatcher.forward(request, response);
     }
-    private void insertUser(HttpServletRequest request, HttpServletResponse response)
-            throws SQLException, IOException, ServletException {
-        String name = request.getParameter("name");
-        String password = request.getParameter("password");
-//        User user = new User(name,password);
-        userDAO.save(name,password);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/user/reg.jsp");
-        dispatcher.forward(request, response);
-    }
+
     private void getReg(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
         RequestDispatcher dispatcher = request.getRequestDispatcher("/user/reg.jsp");

@@ -38,6 +38,11 @@ public class UserController extends HttpServlet {
         String username = req.getParameter("username");
         String password = req.getParameter("password");
         User user = userDAO.getByUsername(username);
+        if(user == null){
+            req.setAttribute("message_erro", "Đăng nhập không thành công");
+            RequestDispatcher dispatcher = req.getRequestDispatcher("/user/login.jsp");
+            dispatcher.forward(req, resp);
+        }
 
         if (user.getPassword().equals(password)) {
 
@@ -46,14 +51,14 @@ public class UserController extends HttpServlet {
             session.setAttribute("name_display",user.getUsername());
             session.setAttribute("ROLE", user.getRole());
 
-            resp.sendRedirect("/products?action=");
+            resp.sendRedirect("/products");
 
         } else {
 
             // thong bao loi dang nhap
 
-            req.setAttribute("message", "Đăng nhập không thành công");
-            RequestDispatcher dispatcher = req.getRequestDispatcher("/login");
+            req.setAttribute("message_erro", "Đăng nhập không thành công");
+            RequestDispatcher dispatcher = req.getRequestDispatcher("/user/login.jsp");
             dispatcher.forward(req, resp);
         }
     }

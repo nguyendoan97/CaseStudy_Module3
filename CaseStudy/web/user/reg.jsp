@@ -1,94 +1,116 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: NguyenDoan
-  Date: 6/9/2020
-  Time: 11:15 AM
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<html lang="en">
 <head>
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-    <link rel="stylesheet" href="/user/login.css">
-    <!------ Include the above in your HEAD tag ---------->
-<%--    <script src="/product/da.js"></script>--%>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap Classic Modal Login Modal Form with Avatar Icon</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style type="text/css">
+        body {
+            font-family: 'Varela Round', sans-serif;
+        }
+        .form-control {
+            box-shadow: none;
+            border-color: #ddd;
+        }
+        .form-control:focus {
+            border-color: #FB6E9D;
+            box-shadow: 0 0 8px rgba(251,110,157,0.4);
+        }
+        .modal-login {
+            color: #434343;
+            width: 350px;
+        }
+        .modal-login .modal-content {
+            padding: 20px;
+            border-radius: 1px;
+            border: none;
+            position: relative;
+        }
+        .modal-login .modal-header {
+            border-bottom: none;
+        }
+        .modal-login h4 {
+            text-align: center;
+            font-size: 22px;
+            margin-bottom: -10px;
+        }
+        .modal-login .avatar {
+            color: #fff;
+            margin: 0 auto;
+            text-align: center;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            z-index: 9;
+            background: #FB6E9D;
+            padding: 15px;
+            box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+        }
+        .modal-login .avatar i {
+            font-size: 62px;
+        }
+        .modal-login .form-control, .modal-login .btn {
+            min-height: 40px;
+            border-radius: 1px;
+            transition: all 0.5s;
+        }
+        .modal-login .hint-text {
+            text-align: center;
+            padding-top: 10px;
+        }
+        .modal-login .close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+        }
+        .modal-login .btn {
+            background: #FB6E9D;
+            border: none;
+            line-height: normal;
+        }
+        .modal-login .btn:hover, .modal-login .btn:focus {
+            background: #fb3c7a;
+        }
+        .modal-login .hint-text a {
+            color: #999;
+        }
+        .trigger-btn {
+            display: inline-block;
+            margin: 5px;
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 col-md-offset-3">
-                <div class="panel panel-login">
-                    <div class="panel-heading">
-                        <div class="row">
-<%--                            <div class="col-xs-6">--%>
-<%--                                <a href="#" class="active" id="login-form-link">ĐĂNG NHẬP</a>--%>
-<%--                            </div>--%>
-                            <div class="col-xs-12">
-                                <a href="#" id="register-form-link">ĐĂNG KÝ</a>
-                            </div>
-                        </div>
-                        <hr>
-                    </div>
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="col-lg-12">
-<%--                                <form id="login-form" action="/login" method="post" role="form" style="display: block;">--%>
-<%--                                    <div class="form-group">--%>
-<%--                                        <c:if test="${requestScope['message'] != null}">--%>
-<%--                                            <c:out value="${message}"></c:out>--%>
-<%--                                        </c:if>--%>
-<%--                                        <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">--%>
-<%--                                    </div>--%>
-<%--                                    <div class="form-group">--%>
-<%--                                        <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password">--%>
-<%--                                    </div>--%>
-<%--                                    <div class="form-group text-center">--%>
-<%--                                        <input type="checkbox" tabindex="3" class="" name="remember" id="remember">--%>
-<%--                                        <label for="remember"> Ghi nhớ</label>--%>
-<%--                                    </div>--%>
-<%--                                    <div class="form-group">--%>
-<%--                                        <div class="row">--%>
-<%--                                            <div class="col-sm-6 col-sm-offset-3">--%>
-<%--                                                <input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="ĐĂNG NHẬP">--%>
-<%--                                            </div>--%>
-<%--                                        </div>--%>
-<%--                                    </div>--%>
-<%--                                    <div class="form-group">--%>
-<%--                                        <div class="row">--%>
-<%--                                            <div class="col-lg-12">--%>
-<%--                                                <div class="text-center">--%>
-<%--                                                    <a href="https://phpoll.com/recover" tabindex="5" class="forgot-password">Quên mật khẩu?</a>--%>
-<%--                                                </div>--%>
-<%--                                            </div>--%>
-<%--                                        </div>--%>
-<%--                                    </div>--%>
-<%--                                </form>--%>
-                                <form id="register-form" action="/admin?action=reg" method="post" role="form" style="display: none;">
-                                    <div class="form-group">
-                                        <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="password" name="confirm-password" id="confirm-password" tabindex="2" class="form-control" placeholder="Confirm Password">
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="row">
-                                            <div class="col-sm-6 col-sm-offset-3">
-                                                <input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="ĐĂNG KÝ">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
+
+<div class="modal-dialog modal-login">
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="avatar"><i class="material-icons">&#xE7FD;</i></div>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        </div>
+        <div class="modal-body">
+            <form action="/products?action=reg" method="post">
+                <div class="form-group">
+                    <input type="text" name="name" class="form-control" placeholder=" Tài khoản" required="required">
                 </div>
-            </div>
+                <div class="form-group">
+                    <input type="password"  name="password" class="form-control" placeholder=" Mật khẩu" required="required">
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-primary btn-block btn-lg" value="ĐĂNG KÝ">
+                </div>
+            </form>
+
+            <div class="hint-text small"><a href="/login">Quay lại đăng nhập</a></div>
         </div>
     </div>
+</div>
 </body>
 </html>
