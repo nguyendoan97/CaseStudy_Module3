@@ -17,6 +17,7 @@
     <a href="./products?action=create">Thêm Sản Phẩm</a><br>
     <a href="./products?action=listbycountry">Phân Loại</a><br>
     <a href="./products?action=index">Show Index</a>
+    <a href="./admin?action=user">Quản lý account</a>
 </h2>
 <div align="center">
     <table border="1" cellpadding="5">

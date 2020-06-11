@@ -70,11 +70,7 @@ public class ProductServlet extends HttpServlet {
                 case "list_customer":
                     list_customer(request,response);
                     break;
-                case "list":
-                    listProduct(request, response);
-                    break;
                 default:
-//                    login(request,response);
                     showIndex(request,response);
                     break;
             }
@@ -86,17 +82,11 @@ public class ProductServlet extends HttpServlet {
     private void showIndex(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Product> listProduct = productDAO.selectAllProduct();
         request.setAttribute("listProduct", listProduct);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/product/list.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/product/new.jsp");
         dispatcher.forward(request, response);
     }
 
-    private void listProduct(HttpServletRequest request, HttpServletResponse response)
-            throws SQLException, IOException, ServletException {
-        List<Product> listProduct = productDAO.selectAllProduct();
-        request.setAttribute("listProduct", listProduct);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/product/list_data.jsp");
-        dispatcher.forward(request, response);
-    }
+
     private void listProductById(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
         int id_search = Integer.parseInt(request.getParameter("id"));
@@ -109,7 +99,7 @@ public class ProductServlet extends HttpServlet {
             throws ServletException, IOException {
         List<Product> listProduct = productDAO.selectAllProduct();
         request.setAttribute("listProduct", listProduct);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/product/list_customer.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/product/index.jsp");
         dispatcher.forward(request, response);
     }
     private void login(HttpServletRequest request, HttpServletResponse response)
@@ -164,7 +154,6 @@ public class ProductServlet extends HttpServlet {
             throws SQLException, IOException, ServletException {
         int id = Integer.parseInt(request.getParameter("id"));
         productDAO.deleteProduct(id);
-
         List<Product> listProduct = productDAO.selectAllProduct();
         request.setAttribute("listProduct", listProduct);
         RequestDispatcher dispatcher = request.getRequestDispatcher("product/list_data.jsp");

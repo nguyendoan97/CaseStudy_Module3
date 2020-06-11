@@ -10,7 +10,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"/>
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-
 </head>
 <body background="http://doancode.mobie.in/4.jpg">
 <div id="header">
@@ -42,43 +41,42 @@
 </div>
 <div id="sidebar">
 
-    <div id="login">
-        <p>Xin Chào,
-                <%
+    <div id="login"> <p>Xin Chào,
+            <%
         HttpSession ses = request.getSession();
         Boolean islogin = (Boolean)ses.getAttribute("IS_LOGGINED");
       %>
-            <c:set var="login" value="<%=islogin%>"/>
-            <c:choose>
-            <c:when test="${login==null}">
-            <a href="login">
-                <button class="btn btn-secondary" type="button">
-                    <i class="fas fa-user-friends"></i> Log In
+        <c:set var="login" value="<%=islogin%>"/>
+        <c:choose>
+        <c:when test="${login==null}">
+        <a href="login">
+            <button class="btn btn-secondary" type="button">
+                <i class="fas fa-user-friends"></i> Log In
 
-                </button>
-            </a>
-            </c:when>
-            <c:when test="${login==false}">
-            <a href="login">
-                <button class="btn btn-secondary" type="button">
-                    <i class="fas fa-user-friends"></i> Log In
+            </button>
+        </a>
+        </c:when>
+        <c:when test="${login==false}">
+        <a href="login">
+            <button class="btn btn-secondary" type="button">
+                <i class="fas fa-user-friends"></i> Log In
 
-                </button>
-            </a>
-            </c:when>
-            <c:when test="${login==true}">
-                    <%String displayName = ses.getAttribute("name_display").toString();%>
-            <a href="staff?action">
-                <button class="btn btn-secondary disabled" type="button">
+            </button>
+        </a>
+        </c:when>
+        <c:when test="${login==true}">
+                <%String displayName = ses.getAttribute("name_display").toString();%>
+        <a href="">
+            <button class="btn btn-secondary disabled" type="button">
 
-                    <i class="fas fa-user-friends"></i> <%=displayName%>
+                <i class="fas fa-user-friends"></i> <%=displayName%>
 
-                </button>
-            </a>
+            </button>
+        </a>
 
-            </c:when>
+        </c:when>
 
-            </c:choose>
+        </c:choose>
 
     </div>
 

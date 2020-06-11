@@ -4,6 +4,8 @@ import com.codegym.model.User;
 import com.codegym.utils.DBConnection;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserDAO {
     DBConnection connection;
@@ -13,17 +15,18 @@ public class UserDAO {
     }
 
     public User getByUsername(String username) {
-        String sql = "SELECT name, password, role FROM account WHERE name = ?";
+        String sql = "SELECT * FROM account WHERE name = ?";
         try {
             PreparedStatement ps = this.connection.getConnection().prepareStatement(sql);
             ps.setString(1, username);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                String u = rs.getString(1);
-                String p = rs.getString(2);
-                String role = rs.getString(3);
+                int id = rs.getInt(1);
+                String u = rs.getString(2);
+                String p = rs.getString(3);
+                String role = rs.getString(4);
 
-                return new User(u, p, role);
+                return new User(id,u, p, role);
             }
         } catch (SQLException e) {
             throw new RuntimeException("Lỗi thực thi lệnh SQL SELECT");
@@ -31,53 +34,54 @@ public class UserDAO {
         return null;
     }
 
+    public List<User> getUser() {
+
+        List<User> users = new ArrayList<>();
+        String sql = "SELECT * FROM account;";
+        try {
+            Statement statement = this.connection.getConnection().createStatement();
+            ResultSet rs = statement.executeQuery(sql);
+
+            while (rs.next()) {
+                int id = rs.getInt(1);
+                String name = rs.getString("name");
+                String passworrd = rs.getString("password");
+                String role = rs.getString("role");
+
+                User user = new User(id,name,passworrd,role);
+                users.add(user);
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Lỗi thực thi câu lệnh SQL");
+        }
+
+        return users;
+    }
+
+    public void save(String name,String password){
+
+        String sql = "INSERT INTO customers (name,password) VALUES (?,?)";
+
+        try {
+            PreparedStatement ps = this.connection.getConnection().prepareStatement(sql);
+            ps.setString(1, name);
+            ps.setString(2, password);
+            ps.execute();
+        } catch (SQLException e) {
+            throw new RuntimeException("Lỗi thực thi lệnh SQL Insert Into");
+        }
+
+    }
+
+    public void deleteById(int id) {
+        String sql = "DELETE FROM account WHERE id = ?";
+        try {
+            PreparedStatement ps = this.connection.getConnection().prepareStatement(sql);
+            ps.setInt(1, id);
+            ps.execute();
+        } catch (SQLException e) {
+            throw new RuntimeException("Lỗi thực thi lệnh SQL DELETE");
+        }
+    }
 }
-
-//    public List<Customer> getCustomers() {
-//
-//        List<Customer> customers = new ArrayList<>();
-//        String sql = "SELECT username, password FROM users";
-//
-//        try {
-//            Statement statement = this.connection.getConnection().createStatement();
-//            ResultSet rs = statement.executeQuery(sql);
-//
-//            while (rs.next()) {
-//                int id = rs.getInt("id");
-//                String name = rs.getString(2);
-//
-//                Customer customer = new Customer(id, name);
-//                customers.add(customer);
-//            }
-//
-//        } catch (SQLException e) {
-//            throw new RuntimeException("Lỗi thực thi câu lệnh SQL");
-//        }
-//
-//        return customers;
-//    }
-
-//    public void save(String customerName) {
-//
-//        String sql = "INSERT INTO customers (name) VALUES (?)";
-//
-//        try {
-//            PreparedStatement ps = this.connection.getConnection().prepareStatement(sql);
-//            ps.setString(1, customerName);
-//            ps.execute();
-//        } catch (SQLException e) {
-//            throw new RuntimeException("Lỗi thực thi lệnh SQL Insert Into");
-//        }
-//
-//    }
-//
-//    public void deleteById(int id) {
-//        String sql = "DELETE FROM customers WHERE id = ?";
-//        try {
-//            PreparedStatement ps = this.connection.getConnection().prepareStatement(sql);
-//            ps.setInt(1, id);
-//            ps.execute();
-//        } catch (SQLException e) {
-//            throw new RuntimeException("Lỗi thực thi lệnh SQL DELETE");
-//        }
-//    }
