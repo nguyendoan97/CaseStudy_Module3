@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -89,31 +90,32 @@
 <body>
 <div style="text-align: left">
     <!-- Button HTML (to Trigger Modal) -->
-    <a href="#myModal" class="trigger-btn" data-toggle="modal">Click to Open Login Modal</a>
+    <a href="#myModal" class="trigger-btn" data-toggle="modal">Click đăng nhập</a>
 </div>
 
 <!-- Modal HTML -->
 <div id="myModal" class="modal fade">
-    <div class="modal-dialog modal-login">
-        <div class="modal-content">
-            <div class="modal-header">
-                <div class="avatar"><i class="material-icons">&#xE7FD;</i></div>
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            </div>
-            <div class="modal-body">
-                <form action="/examples/actions/confirmation.php" method="post">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Username" required="required">
-                    </div>
-                    <div class="form-group">
-                        <input type="password" class="form-control" placeholder="Password" required="required">
-                    </div>
-                    <div class="form-group">
-                        <input type="submit" class="btn btn-primary btn-block btn-lg" value="Login">
-                    </div>
-                </form>
-                <div class="hint-text small"><a href="#">Forgot Your Password?</a></div>
-            </div>
+
+</div>
+<div class="modal-dialog modal-login">
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="avatar"><i class="material-icons">&#xE7FD;</i></div>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        </div>
+        <div class="modal-body">
+            <form action="/login" method="post">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder=" Tài khoản" required="required">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" placeholder=" Mật khẩu" required="required">
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-primary btn-block btn-lg" value="ĐĂNG NHẬP">
+                </div>
+            </form>
+            <div class="hint-text small"><a href="#">Quên mật khẩu ?</a></div>
         </div>
     </div>
 </div>

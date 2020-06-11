@@ -56,9 +56,9 @@
                     <input id="search_input" type="text" name="search" placeholder= "Search..."/>
                 </div>
             </form>
-            <a href="user/login.jsp">Đăng nhập</a>
+            <a href="/login">Đăng nhập</a>
             <b style="padding-right: 10px;padding-left: 10px">|</b>
-            <a href="user/reg.jsp">Đăng ký</a>
+            <a href="admin/">Đăng ký</a>
         </div>
     </nav>
 </header>

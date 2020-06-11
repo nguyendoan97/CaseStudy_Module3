@@ -26,6 +26,18 @@ public class AdminServlet extends HttpServlet {
         userDAO = new UserDAO(dbConnection);
     }
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String action = request.getParameter("action");
+        if (action == null) {
+            action = "";
+        }
+        try {
+            switch (action) {
+                case "reg":
+                    insertUser(request,response);
+            }
+        }catch(SQLException throwables) {
+            throwables.printStackTrace();
+        }
 
     }
 
@@ -85,7 +97,13 @@ public class AdminServlet extends HttpServlet {
         String password = request.getParameter("password");
 //        User user = new User(name,password);
         userDAO.save(name,password);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/user/login.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/user/reg.jsp");
         dispatcher.forward(request, response);
     }
+    private void getReg(HttpServletRequest request, HttpServletResponse response)
+            throws SQLException, IOException, ServletException {
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/user/reg.jsp");
+        dispatcher.forward(request, response);
+    }
+
 }

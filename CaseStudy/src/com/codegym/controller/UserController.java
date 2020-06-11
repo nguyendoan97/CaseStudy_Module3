@@ -28,7 +28,7 @@ public class UserController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        RequestDispatcher dispatcher = req.getRequestDispatcher("./product/list.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("./user/login.jsp");
         dispatcher.forward(req, resp);
 
     }
@@ -46,14 +46,14 @@ public class UserController extends HttpServlet {
             session.setAttribute("name_display",user.getUsername());
             session.setAttribute("ROLE", user.getRole());
 
-            resp.sendRedirect("/products?action=list_customer");
+            resp.sendRedirect("/products?action=");
 
         } else {
 
             // thong bao loi dang nhap
 
             req.setAttribute("message", "Đăng nhập không thành công");
-            RequestDispatcher dispatcher = req.getRequestDispatcher("product/login.jsp");
+            RequestDispatcher dispatcher = req.getRequestDispatcher("/login");
             dispatcher.forward(req, resp);
         }
     }
