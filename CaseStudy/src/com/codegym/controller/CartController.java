@@ -96,7 +96,7 @@ public class CartController extends HttpServlet {
         item.setAmount(amount);
         cart.addItem(item);
         session.setAttribute("cart", cart);
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/list_cart.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/products");
         dispatcher.forward(req, resp);
     }
 }

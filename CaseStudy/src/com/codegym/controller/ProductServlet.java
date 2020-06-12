@@ -125,18 +125,18 @@ public class ProductServlet extends HttpServlet {
         dispatcher.forward(request, response);
     }
 
-    private void updateProduct(HttpServletRequest request, HttpServletResponse response)
-            throws SQLException, IOException, ServletException {
-        int id = Integer.parseInt(request.getParameter("id"));
-        String name = request.getParameter("name");
-        String image = request.getParameter("image");
-        int prince = Integer.parseInt(request.getParameter("prince"));
-        String classify = request.getParameter("classify");
-        Product product = new Product(id,name, image,prince, classify);
-        productDAO.updateProduct(product);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("product/edit.jsp");
-        dispatcher.forward(request, response);
-    }
+        private void updateProduct(HttpServletRequest request, HttpServletResponse response)
+                throws SQLException, IOException, ServletException {
+            int id = Integer.parseInt(request.getParameter("id"));
+            String name = request.getParameter("name");
+            String image = request.getParameter("image");
+            int prince = Integer.parseInt(request.getParameter("prince"));
+            String classify = request.getParameter("classify");
+            Product product = new Product(id,name, image,prince, classify);
+            productDAO.updateProduct(product);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("product/edit.jsp");
+            dispatcher.forward(request, response);
+        }
 
     private void deleteProduct(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {

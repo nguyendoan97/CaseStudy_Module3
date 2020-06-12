@@ -164,7 +164,7 @@
                         <br>
                         <div id="nut">
                             <button type="submit" style="margin-top: -30px;margin-left:0;">
-                                <a style="text-decoration: none ; color: white" href="/cart?action=cart&id=${product.id}">Đặt Hàng</a></button>
+                                <a style="text-decoration: none ; color: white" href="/cart?action=cart&id=${productt.id}">Đặt Hàng</a></button>
                         </div>
                         <br>
                         <a href="/products?action=list_customer">Quay lại</a>
